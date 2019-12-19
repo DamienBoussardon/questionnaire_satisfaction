@@ -156,6 +156,6 @@ class Survey
     }
 
     public function __toString() {
-        return{ 'id' : $this->name}
+        return $this->name;
     }
 }
