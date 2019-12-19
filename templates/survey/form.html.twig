@@ -1,0 +1,13 @@
+ {% extends 'base.html.twig' %}
+
+ {% block title %}Créer un nouveau Questionnaire{% endblock %}
+
+ {% block body %}
+   <div class="container pt-4">
+      <h3>Formulaire d'annonce</h3>
+
+      <div class="contaire">
+         {{ include('partials/_form.html.twig',  {'button_label': 'Créer'}) }}
+      </div>
+   </div>
+ {% endblock %} 

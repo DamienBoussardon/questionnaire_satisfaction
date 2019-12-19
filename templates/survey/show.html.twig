@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ current_survey.name }} {% endblock %}
+
+{% block body %}
+<div class="container pt-4">
+    {% for field_survey in current_survey.fieldSurveys %}
+        <p>{{ field_survey.id }} | {{ field_survey.question }}</p>
+    {% endfor %}
+    <a href="{{ path( 'edit_survey_page',{'id': current_survey.id} )}}" class="btn btn-success">Ajouter une Question</a>
+</div>   
+{% endblock %}
