@@ -31,10 +31,11 @@ class SurveyController extends AbstractController
      */
     public function index(): Response
     {
-        $surveys = $this->surveyRepository->findAll();
+
+        $user_id = $this->getUser()->getId();
+        $surveys = $this->surveyRepository->findByUserId($user_id);
 
         return $this->render('survey/index.html.twig',['surveys' => $surveys]);
-    
 
     }
 
@@ -43,8 +44,9 @@ class SurveyController extends AbstractController
      */
     public function formCreationSurvey(Request $request)
     {
+            $user = $this->getUser();
 
-            $survey = new Survey();
+            $survey = new Survey($user);
             $form = $this->createForm(SurveyType::class, $survey);
   
             $form->handleRequest($request);
@@ -62,7 +64,7 @@ class SurveyController extends AbstractController
     }
 
      /**
-     * @Route(path="/admin/{id}/edit_survey_page", name="edit_survey_page")
+     * @Route(path="/admin/edit_survey_page/{id}", name="edit_survey_page")
      */
     public function formCreationFieldSurvey(Request $request, $id)
     {
@@ -88,14 +90,12 @@ class SurveyController extends AbstractController
 
     }
 
-
      /**
-     * @Route(path="/admin/delete_survey_page/{survey}/", name="delete_survey_page")
+     * @Route(path="/admin/delete_survey_page/{id}/", name="delete_survey_page")
      */
-    public function deleteSurvey($survey)
+    public function deleteSurvey($id)
     { 
-        dump($survey);
-        $id = $survey->id();
+       
         $currentSurvey = $this->surveyRepository->find($id);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($currentSurvey);
@@ -106,16 +106,14 @@ class SurveyController extends AbstractController
     }
 
       /**
-     * @Route(path="/admin/{id}/show_survey_page", name="show_survey_page")
+     * @Route(path="/admin/show_survey_page/{id}", name="show_survey_page")
      */
     public function  showSurvey(Request $request, $id)
     {
         $currentSurvey = $this->surveyRepository->find($id);
 
-    
         return $this->render('survey/show.html.twig', ['current_survey' => $currentSurvey]);
     
     }
-
 
 }

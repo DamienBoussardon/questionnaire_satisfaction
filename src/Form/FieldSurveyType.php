@@ -26,14 +26,14 @@ class FieldSurveyType extends AbstractType
             ->add('question')
             ->add('typeResponse', ChoiceType::class, array(
                 'choices'=> [
+                    'Texte de moins 255 caratère' =>   "text",
+                    'Texte de plus 255 caratères' =>   "textarea",
                     'Coche'                       =>   "checkbox",
-                    'Puce'                        =>   "ratio",
+                    'Puce'                        =>   "radio",
                     'Email'                       =>   "email",
                     'Date'                        =>   "date",
-                    'Choix Myltiple'              =>   "select",
+                    'Choix Multiples'              =>  "select",
                     'Téléchargement de fichier'   =>   "file",
-                    'Texte de moins 255 caratère' =>   "text",
-                    'Texte de plus 255 caratères' =>   "texterea"
                     ]
             ))
         ;

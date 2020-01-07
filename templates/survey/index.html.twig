@@ -8,10 +8,10 @@
       {% if surveys|length > 0 %}
         {% for survey in surveys %}
             <p>{{ survey.id }} | {{ survey.name }} 
-              {{ dump(survey) }}
-              <a href="{{ path( 'delete_survey_page',{'survey': survey})}}" class="btn btn-danger">remove</a>
-              <a href="{{ path( 'edit_survey_page',{'id': survey.id})}}" class="btn btn-warning">edit</a>
-              <a href="{{ path( 'show_survey_page',{'id': survey.id})}}" class="btn btn-success">show</a>
+              <a href="{{ path( 'delete_survey_page',{'id': survey.id})}}" class="btn btn-danger">Supprimer le Questionnaire</a>
+              <a href="{{ path( 'edit_survey_page',{'id': survey.id})}}" class="btn btn-warning">Ajouter une question</a>
+              <a href="{{ path( 'show_survey_page',{'id': survey.id})}}" class="btn btn-success">Visualiser le Questionnaire</a>
+              <a href="{{ path( 'front_survey_page',{'id': survey.id})}}" class="btn btn-light border border-dark">front</a>
             </p>
            
         {% endfor %}

@@ -6,7 +6,14 @@
 <div class="container pt-4">
     {% for field_survey in current_survey.fieldSurveys %}
         <p>{{ field_survey.id }} | {{ field_survey.question }}</p>
+
+        {% if app.request.get('_route') == 'show_survey_page' %}
+            <a href="{{ path( 'delete_field',{'id': field_survey.id} )}}" class="btn btn-danger">Supprimer</a>
+        {% endif %}
+
     {% endfor %}
-    <a href="{{ path( 'edit_survey_page',{'id': current_survey.id} )}}" class="btn btn-success">Ajouter une Question</a>
+    {% if app.request.get('_route') == 'show_survey_page' %}
+        <a href="{{ path( 'edit_survey_page',{'id': current_survey.id} )}}" class="btn btn-success">Ajouter une Question</a>
+    {% endif %}
 </div>   
 {% endblock %}

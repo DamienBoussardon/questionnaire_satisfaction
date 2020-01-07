@@ -34,8 +34,19 @@ class SurveyRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
+    
+    */
+    public function findByUserId($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.user = :val')
+            ->setParameter('val', $value)
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     /*
     public function findOneBySomeField($value): ?Survey
     {

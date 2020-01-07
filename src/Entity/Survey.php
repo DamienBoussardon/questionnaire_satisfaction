@@ -48,10 +48,11 @@ class Survey
      */
     private $numbreOfQuestion;
 
-    public function __construct()
+    public function __construct($user)
     {
         $this->created_at = new \DateTime();
         $this->fieldSurveys = new ArrayCollection();
+        $this->user= $user;
     }
 
     public function getId(): ?int

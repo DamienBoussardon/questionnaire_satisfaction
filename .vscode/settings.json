@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "database": "questionnaire_satisfaction",
+            "dialect": "MySQL",
+            "name": "questionnaire_satisfaction",
+            "port": 3308,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}
