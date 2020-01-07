@@ -8,6 +8,15 @@
             "port": 3308,
             "server": "localhost",
             "username": "root"
+        },
+        {
+            "askForPassword": false,
+            "database": "questionnaire_satisfaction",
+            "dialect": "MySQL",
+            "name": "questionnaire",
+            "port": 3306,
+            "server": "localhost",
+            "username": "root"
         }
     ]
 }

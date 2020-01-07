@@ -27,16 +27,20 @@ class Response
     private $created_at;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserFront", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="surveys")
      */
-    private $user_front;
+    private $user;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Survey", inversedBy="response", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $survey;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $mapping_question_response = [];
     
 
     public function getId(): ?int
@@ -69,14 +73,14 @@ class Response
         return $this;
     }
 
-    public function getUserFront(): ?UserFront
+    public function getUser(): ?User
     {
-        return $this->user_front;
+        return $this->user;
     }
 
-    public function setUserFront(UserFront $user_front): self
+    public function setUser(?User $user): self
     {
-        $this->user_front = $user_front;
+        $this->user = $user;
 
         return $this;
     }
@@ -89,6 +93,18 @@ class Response
     public function setSurvey(Survey $survey): self
     {
         $this->survey = $survey;
+
+        return $this;
+    }
+
+    public function getMappingQuestionResponse(): ?array
+    {
+        return $this->mapping_question_response;
+    }
+
+    public function setMappingQuestionResponse(array $mapping_question_response): self
+    {
+        $this->mapping_question_response = $mapping_question_response;
 
         return $this;
     }

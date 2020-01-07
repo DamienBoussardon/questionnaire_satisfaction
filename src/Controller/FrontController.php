@@ -28,6 +28,11 @@ class FrontController extends AbstractController
 
         return $this->render('front_survey/front_survey.html.twig', ['current_survey' => $currentSurvey]);
     }
+
+    
+    public function addResponseToSurvey(){
+
+    } 
     
 
 
