@@ -3,23 +3,5 @@
 {% block title %} {{ current_survey.name }} {% endblock %}
 
 {% block body %}
-<div class="container pt-4">
-    <form action="" method="get" class="form-example">
-        {% for field_survey in current_survey.fieldSurveys %}
-            <p>{{ field_survey.id }} | {{ field_survey.question }}</p>
-
-            {% if field_survey.typeResponse == 'textarea' %}
-                <textarea></textarea>
-            {% elseif field_survey.typeResponse == 'radio' %}
-                {% for field_survey in current_survey.fieldSurveys %}
-                    <input type="{{field_survey.typeResponse}}">
-                {% endfor %}
-            {% else %}
-                <input type="{{field_survey.typeResponse}}">
-            {% endif %}
-
-        {% endfor %}
-      <input type="submit">
-    <form>
-</div>   
+    <h1>{{ current_survey.name }}</h1>
 {% endblock %}
