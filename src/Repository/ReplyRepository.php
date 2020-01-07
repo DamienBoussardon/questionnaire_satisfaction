@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Response;
+use App\Entity\Reply;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Response|null find($id, $lockMode = null, $lockVersion = null)
- * @method Response|null findOneBy(array $criteria, array $orderBy = null)
- * @method Response[]    findAll()
- * @method Response[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Reply|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Reply|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Reply[]    findAll()
+ * @method Reply[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ResponseRepository extends ServiceEntityRepository
+class ReplyRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Response::class);
+        parent::__construct($registry, Reply::class);
     }
 
     // /**
-    //  * @return Response[] Returns an array of Response objects
+    //  * @return Reply[] Returns an array of Response objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ResponseRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Response
+    public function findOneBySomeField($value): ?Reply
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

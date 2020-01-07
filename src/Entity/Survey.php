@@ -34,9 +34,9 @@ class Survey
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Response", mappedBy="survey", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Reply", mappedBy="survey", cascade={"persist", "remove"})
      */
-    private $response;
+    private $reply;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FieldSurvey", mappedBy="survey", orphanRemoval=true)
@@ -96,18 +96,18 @@ class Survey
         return $this;
     }
 
-    public function getResponse(): ?Response
+    public function getResponse(): ?Reply
     {
         return $this->response;
     }
 
-    public function setResponse(Response $response): self
+    public function setResponse(Reply $reply): self
     {
-        $this->response = $response;
+        $this->response = $reply;
 
         // set the owning side of the relation if necessary
-        if ($response->getSurvey() !== $this) {
-            $response->setSurvey($this);
+        if ($reply->getSurvey() !== $this) {
+            $reply->setSurvey($this);
         }
 
         return $this;

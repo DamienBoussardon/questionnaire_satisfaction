@@ -30,7 +30,7 @@ class FieldSurvey
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $typeResponse;
+    private $typeReply;
 
     public function getId(): ?int
     {
@@ -65,14 +65,14 @@ class FieldSurvey
         return $this->question;
     }
 
-    public function getTypeResponse(): ?string
+    public function getTypeReply(): ?string
     {
-        return $this->typeResponse;
+        return $this->typeReply;
     }
 
-    public function setTypeResponse(string $typeResponse): self
+    public function setTypeReply(string $typeReply): self
     {
-        $this->typeResponse = $typeResponse;
+        $this->typeResponse = $typeReply;
 
         return $this;
     }

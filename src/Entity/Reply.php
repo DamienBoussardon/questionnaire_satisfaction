@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ResponseRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ReplyRepository")
  */
-class Response
+class Reply
 {
     /**
      * @ORM\Id()
@@ -27,11 +27,6 @@ class Response
     private $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="surveys")
-     */
-    private $user;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\Survey", inversedBy="response", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -41,6 +36,11 @@ class Response
      * @ORM\Column(type="json")
      */
     private $mapping_question_response = [];
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PersonSurveyed", inversedBy="reply")
+     */
+    private $personSurveyed;
     
 
     public function getId(): ?int
@@ -73,18 +73,6 @@ class Response
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getSurvey(): ?Survey
     {
         return $this->survey;
@@ -105,6 +93,18 @@ class Response
     public function setMappingQuestionResponse(array $mapping_question_response): self
     {
         $this->mapping_question_response = $mapping_question_response;
+
+        return $this;
+    }
+
+    public function getPersonSurveyed(): ?PersonSurveyed
+    {
+        return $this->personSurveyed;
+    }
+
+    public function setPersonSurveyed(?PersonSurveyed $personSurveyed): self
+    {
+        $this->personSurveyed = $personSurveyed;
 
         return $this;
     }
