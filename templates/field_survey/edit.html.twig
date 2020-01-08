@@ -3,10 +3,10 @@
 {% block title %}Ajouter une nouvelle Question{% endblock %}
 
 {% block body %}
-<div class="container pt-4">
+<div class="container pt-6">
 
     {{ include('partials/_form.html.twig',  {'button_label': 'Ajouter'}) }}
 
-    <a href="{{ path('survey') }}">Retour vers les formulaires</a>
+    <a href="{{ path('survey') }}" class="btn btn-secondary"> Retour vers les formulaires</a>
 </div>
 {% endblock %}

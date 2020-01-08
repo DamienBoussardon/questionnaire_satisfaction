@@ -71,13 +71,16 @@ class SurveyController extends AbstractController
         $currentSurvey = $this->surveyRepository->find($id);
         
         $fieldSurvey = new FieldSurvey();
-        $fieldSurvey->setSurvey($currentSurvey);
-        dump($fieldSurvey);
-        $form = $this->createForm(FieldSurveyType::class, $fieldSurvey,['current_survey' => $currentSurvey]);
+     
+ 
+        $form = $this->createForm(FieldSurveyType::class,$fieldSurvey);
         $form->handleRequest($request);
+        dump($fieldSurvey);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $fieldSurvey->setSurvey($currentSurvey);
             $em->persist($fieldSurvey);
             $em->flush();
 

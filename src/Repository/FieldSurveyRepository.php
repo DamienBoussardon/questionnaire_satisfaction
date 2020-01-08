@@ -36,6 +36,17 @@ class FieldSurveyRepository extends ServiceEntityRepository
     }
     */
 
+    public function findAllFieldSurvayBySurveyId($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.survey = :val')
+            ->setParameter('val', $value)
+            ->orderBy('f.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /*
     public function findOneBySomeField($value): ?FieldSurvey
     {

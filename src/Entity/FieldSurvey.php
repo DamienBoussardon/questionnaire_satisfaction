@@ -72,7 +72,7 @@ class FieldSurvey
 
     public function setTypeReply(string $typeReply): self
     {
-        $this->typeResponse = $typeReply;
+        $this->typeReply = $typeReply;
 
         return $this;
     }

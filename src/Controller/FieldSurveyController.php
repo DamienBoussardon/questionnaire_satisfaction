@@ -11,7 +11,7 @@ use App\Repository\FieldSurveyRepository;
 class FieldSurveyController extends AbstractController
 {
 
-  /**
+    /**
     * @var FieldSurveyRepository
     */
     private $fieldSurveyRepository;
