@@ -10,7 +10,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass="App\Repository\PersonalizationRepository")
 * @Vich\Uploadable
  */
-class Personalization
+class Personalization implements \Serializable
 {
     /**
      * @ORM\Id()
@@ -117,4 +117,20 @@ class Personalization
         return $this->imageName;
     }
 
+  
+      public function serialize()
+      {
+          return serialize(array(
+              $this->id,
+              $this->imageName,
+  
+          ));
+      }
+  
+    public function unserialize($serialized)
+    {
+        $this->id = unserialize($serialized);
+    
+    }
+      
 }
