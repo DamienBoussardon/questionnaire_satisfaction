@@ -27,7 +27,7 @@ class Reply
     private $created_at;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Survey", inversedBy="response", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Survey", inversedBy="response", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $survey;

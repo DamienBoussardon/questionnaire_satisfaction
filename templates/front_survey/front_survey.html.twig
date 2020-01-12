@@ -2,7 +2,44 @@
 
 
 {% block body %}
+
+    {% for message in app.flashes('thanksMessage') %}
+        <div class="flash-message alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('messageError') %}
+        <div class="flash-message alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <div class="container pt-4 d-flex p-2">
-        {{ form(form) }}
+    
+     <form id="login_reply" action="{{ path('questionnaire', {'id': survey.id}) }}" method="post">
+
+            <div class="form_group">
+                <label for="inputEmail" >Adresse Email</label>
+         
+                <input id="inputEmail" placeholder="toto@exemple.com" name="_email" type="email" class="span12 field_form form-control"></input>  
+            </div>
+
+            {% for field in list_field %}
+               {# {{ dump(field) }} #}
+                <div class="form_group">
+                    <label>{{ field.question }} ?</label>
+                    {% if field.typeReply == 'textarea' %}
+                        <textarea placeholder="Entrer votre réponse" name="{{ field.id }}" class="span12 form-control"></textarea>
+                    {% else %}
+                        <input placeholder="Entrer votre réponse" name="{{ field.id }}" type="{{ field.typeReply }}" class="span12 field_form form-control"></input>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn btn-info">Envoyer</button>
+            </div>
+       </form>
     </div>
 {% endblock %}

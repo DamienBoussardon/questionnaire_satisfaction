@@ -33,7 +33,7 @@ class SurveyController extends AbstractController
     {
 
         $user_id = $this->getUser()->getId();
-        $surveys = $this->surveyRepository->findByUserId($user_id);
+        $surveys = $this->surveyRepository->findSurveyByUserId($user_id);
 
         return $this->render('survey/index.html.twig',['surveys' => $surveys]);
 
@@ -75,7 +75,6 @@ class SurveyController extends AbstractController
  
         $form = $this->createForm(FieldSurveyType::class,$fieldSurvey);
         $form->handleRequest($request);
-        dump($fieldSurvey);
 
 
         if ($form->isSubmitted() && $form->isValid()) {

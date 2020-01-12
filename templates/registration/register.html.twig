@@ -3,14 +3,20 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="container pt-4">
-    <h1>Register</h1>
+    <div class="container mt-6 pt-4">
+    <div class="h-80vh d-flex justify-content-center align-items-center" >
         {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword) }}
+            <h1>Inscription</h1>
+            {{ form_row(registrationForm.email, { 'attr': {'class': "span12",
+    'placeholder': 'toto@exemple.com'} } ) }}
+            {{ form_row(registrationForm.plainPassword, { 'attr': {'class': "span12",
+    'placeholder': 'Mots de passe de 6 caractères minimum'} } ) }}
             {{ form_row(registrationForm.agreeTerms) }}
+            <div class="form-group d-flex justify-content-center">
 
-            <button class="btn btn-primary">Register</button>
+                <button class="btn btn-info">Inscription</button>
+            </div> 
         {{ form_end(registrationForm) }}
+    </div>   
     </div>   
 {% endblock %}

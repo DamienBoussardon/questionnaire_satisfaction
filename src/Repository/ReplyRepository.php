@@ -47,4 +47,16 @@ class ReplyRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findReplyBySurveyAndPersonSurveyed($survey, $personSurvey): ?Reply
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.survey = :s')
+            ->andWhere('r.personSurveyed = :p')
+            ->setParameter('s', $survey)
+            ->setParameter('p', $personSurvey)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

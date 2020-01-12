@@ -37,7 +37,7 @@ class SurveyRepository extends ServiceEntityRepository
 
     
     */
-    public function findByUserId($value)
+    public function findSurveyByUserId($value)
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.user = :val')

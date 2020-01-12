@@ -1,0 +1,16 @@
+ {% extends 'base.html.twig' %}
+
+ {% block title %}Personalisation{% endblock %}
+
+ {% block body %}
+   <div class="container pt-4">
+      <h3>Formulaire de paramétrage</h3>
+
+      <div class="">
+         {{ form_start(form) }}
+           <div class="contaire">
+            {{ include('partials/_form.html.twig',  {'button_label': 'Configurer'}) }}
+         </div>
+      </div>
+   </div>
+ {% endblock %} 

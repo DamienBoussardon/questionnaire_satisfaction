@@ -2,9 +2,23 @@
 
 
   {% block body %}
-    <div class="container">
-      <h1>home</h1>
-    </div>
+    <div class="home" style="background-image:url('{{ asset('/img/home.jpg') }}')">
+      <div class="home_filter"></div>
+      <div class="container home_container" >
+
+        <h1 class="text-dark">Plateforme de création de formulaire</h1>
+        <h2 class="text-secondary">Spécialisé pour les Professionnels</h2>
+          
+        <div class="home_section_btn d-flex justify-content-between">
+            <a href="{{ path('app_register')}}" class="btn_creation">Créer un compte</a>
+            <a href="{{ path('login')}}" class="btn_connection">Se connecter</a>
+        </div>  
+
+      </div>
+
+    </div> 
+
+  
   
     
   {% endblock %}

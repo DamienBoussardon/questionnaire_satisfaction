@@ -5,16 +5,20 @@
 {% block body %}
 <div class="container pt-4">
     {% for field_survey in current_survey.fieldSurveys %}
-     <div class="survey_section d-flex justify-content-between" >
+     <div class="section_display d-flex justify-content-between  align-items-center" >
         <div>
-         {{ field_survey.question }} ?
+         <p>{{ field_survey.question }} ?</p>
         </div>
             <div>
-                <a href="{{ path( 'delete_field',{'id': field_survey.id} )}}" class="btn btn-danger">Supprimer</a>
+                <a href="{{ path( 'delete_field',{'id': field_survey.id} )}}" ><i class="fa fa-trash-o" style="font-size:24px;color:red;margin-left:1em;"></i></a>
             </div>
         </div>
 
     {% endfor %}
-    <a href="{{ path( 'edit_survey_page',{'id': current_survey.id} )}}" class="btn btn-info btn_add_survey">+</a>
+    
+    <a href="{{ path( 'edit_survey_page',{'id': current_survey.id} )}}" id="btn_add_field_survey" class="btn btn-info btn_add_survey">+</a>
+    {# <a href="{{ path( 'edit_survey_page',{'id': current_survey.id} )}}" class="btn btn-info btn_add_survey"><i class="fa fa-plus" style="font-size:36px;font-weight:500"></i></a> #}
+    
+
 </div>   
 {% endblock %}

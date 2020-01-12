@@ -1,0 +1,155 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+.h-80vh{
+    height: 80vh;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+/***LOGIN_FORM****/
+#login_form{
+    border: 1px solid #ced4da;
+    border-radius: .25em;
+    padding: 2em 2em 1em 2em;
+    /*width: 325px;*/
+}
+
+.login_submit{
+    margin-top: 1em
+}
+
+/****PAGE_QUESTIONNAIRES****/
+.btn_add_survey{
+    position: absolute;
+    bottom: 100px;
+    right: 75px;
+    font-size: 3em;
+    height: 75px;
+    width: 75px;
+    border-radius: 75%;
+    line-height: 52.5px;
+    vertical-align: middle;
+    box-shadow: 10px 10px 10px rgba(13,88,99, 0.1);
+}
+.btn_add_survey:hover{
+    line-height: 49px;
+    border: 3px solid #1EC9E3;
+}
+/**GLOBAL STYLE IN INDEX AND SHOW SURVEY**/
+.section_display{
+    padding: 2em 1em;
+    border-bottom: 1px solid rgba(13,88,99, 0.08);
+}
+.section_display p{
+    font-weight: 500;
+    font-size: 1.1em;
+    margin-bottom: 0 !important;
+}
+
+.fa-adjust{
+    content:'\f042';
+    font-weight: 800;
+}
+
+
+/**FIEL FORM*/
+#field_survey_question{
+    width:100%;
+    border-radius: .25em;
+    padding: .5em .75em;
+    border: .5px solid rgb(169, 169, 169);
+
+}
+#field_survey div{
+    margin-bottom: 4em;
+}
+form[name='field_survey'] button{
+    float: right;
+}
+#field_survey_typeReply{
+    border-radius: .25em;
+    padding: .5em 1em;
+}
+
+#login_reply {
+    width:100%;
+}
+#login_reply div{
+    margin-bottom: 3em;
+}
+.field_form{
+    width:100%;
+    border-radius: .25em;
+    padding: .5em .75em;
+    border: .5px solid rgb(169, 169, 169);
+}
+
+
+
+
+.home{
+     min-height: calc(100vh - 93px);
+     width: 100vw;
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+ }
+ .home_filter{
+    min-height: calc(100vh - 93px);
+    background: linear-gradient(135deg, rgba(82, 180, 195, 0.03), rgba(82, 180, 195, 0.03), 60%, rgba(13,88,99, 0.2));
+}
+.home_container{
+    position: absolute;
+    top: 194px;
+    left: 150px;
+}
+
+.btn_connection{
+    font-size: 1.4em;
+    padding: 1em 1.25em;
+    border: 4px solid #17a2b8 ;
+    color: #17a2b8;
+    border-radius:2px ;
+}
+
+.btn_connection:hover{
+    text-decoration: none;
+    color: #138496;
+    border: 4px solid #138496;;
+}
+.btn_creation{
+    font-size: 1.4em;
+    padding: 1em 1.25em;
+    border: 4px solid #17a2b8 ;
+    color: white;
+    background-color: #17a2b8;
+    border-radius:2px ;
+}
+.btn_creation:hover{
+    text-decoration: none;
+    background-color:  #138496;;
+    color: white;
+}
+
+.home_container h1{
+    font-size: 2.7em;
+    padding-top: 4em;
+
+}
+.home_container h2{
+    font-size: 1.7em;
+    padding-bottom: 1em;
+}
+.home_section_btn{
+    width: 500px;
+}
+
+/**FROM REGISTER**/
+form[name="registration_form"]{
+    border: 1px solid #ced4da;
+    border-radius: .25em;
+    padding: 2em 2em 1em 2em;
+    width: 430px;
+}

@@ -42,6 +42,11 @@ class User implements UserInterface
      */
     private $surveys;
 
+       /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Personalization", mappedBy="user")
+     */
+    private $personalization;
+
     public function __construct()
     {
         $this->surveys = new ArrayCollection();
@@ -174,4 +179,24 @@ class User implements UserInterface
         ) = unserialize($serialize, ['allowed_classes'=> false]);
     }
 
+
+    /**
+     * Get the value of personalization
+     */ 
+    public function getPersonalization()
+    {
+        return $this->personalization;
+    }
+
+    /**
+     * Set the value of personalization
+     *
+     * @return  self
+     */ 
+    public function setPersonalization($personalization)
+    {
+        $this->personalization = $personalization;
+
+        return $this;
+    }
 }
