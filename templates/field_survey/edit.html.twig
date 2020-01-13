@@ -3,9 +3,17 @@
 {% block title %}Ajouter une nouvelle Question{% endblock %}
 
 {% block body %}
-<div class="container pt-6">
+<div class="container pt-5">
+    <h3>Formulaire de création et d'ajout de champ</h3>
 
-    {{ include('partials/_form.html.twig',  {'button_label': 'Ajouter'}) }}
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_row(form.question) }}
+        {{ form_row(form.typeReply) }}
+        <div id="location_element_added" class="form-group"></div>
+        <button class="btn btn-info color_theme">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+    {{ form_end(form) }}
 
     <a href="{{ path('survey') }}" class="btn btn-secondary"> Retour vers les formulaires</a>
 </div>

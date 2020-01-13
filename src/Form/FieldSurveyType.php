@@ -19,11 +19,11 @@ class FieldSurveyType extends AbstractType
                     'Texte de plus 255 caratères' =>   "textarea",
                     'Coche'                       =>   "checkbox",
                     'Puce'                        =>   "radio",
-                    'Email'                       =>   "email",
+                    // 'Email'                       =>   "email",
                     'Date'                        =>   "date",
                     'Choix Multiples'              =>  "select",
-                    'Téléchargement de fichier'   =>   "file",
-                    ]
+                ],
+                'label' => 'Type de Réponse',
                 ))
             ;
     }

@@ -32,6 +32,11 @@ class FieldSurvey
      */
     private $typeReply;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $associatedValues = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,6 +78,18 @@ class FieldSurvey
     public function setTypeReply(string $typeReply): self
     {
         $this->typeReply = $typeReply;
+
+        return $this;
+    }
+
+    public function getAssociatedValues(): ?array
+    {
+        return $this->associatedValues;
+    }
+
+    public function setAssociatedValues(?array $associatedValues): self
+    {
+        $this->associatedValues = $associatedValues;
 
         return $this;
     }

@@ -10,12 +10,20 @@
         
         {% block stylesheets %}
             <link href="{{ asset('/css/style.css') }}" rel="stylesheet" />
+
+            {% if app.user and  app.user.personalization != null %}
+                <style>
+                .color_theme{
+                    background: {{ app.user.personalization.color }} !important;
+                }
+                </style>
+            {% endif %}
         {% endblock %}
         
     </head>
     <body>
         <div class="clearfix">
-            {% include 'partials/header.html.twig' with {'foo': 'bar'} %}
+            {% include 'partials/header.html.twig' %}
  
             {% block body %}{% endblock %}
 

@@ -51,6 +51,7 @@ class FrontController extends AbstractController
       $content = $request->request->all();;
 
       if($content != null){
+        dump( $request->request);
         $this->valueTraitement($content , $fields ,$survey);
       }
   
@@ -83,10 +84,10 @@ class FrontController extends AbstractController
               $entityManager->persist($personSurveyed);
               $entityManager->flush();
               $idOfPersonSurveyed = $personSurveyed->getId();
-              dump( $idOfPersonSurveyed);
+              // dump( $idOfPersonSurveyed);
           }else{
             $idOfPersonSurveyed  = $personSurveyedExist->getId();
-            dump( $idOfPersonSurveyed);
+            // dump( $idOfPersonSurveyed);
           }
           
           $personSurveyed = $this->personSurveyedRepository->find($idOfPersonSurveyed);
@@ -96,10 +97,13 @@ class FrontController extends AbstractController
           dump($alreadyAnswered);
 
           if ( $alreadyAnswered == null ){
-
+            dump($data);
             foreach($fields as $field ){
               // verifie si $field != null et l'ajout a l'array $mapping
-              if( $data[$field->getId()] != null ){
+           
+
+       
+              if( isset($data[$field->getId()] ) && $data[$field->getId()] != null ){
                 array_push($mapping, [ $field->getId() => $data[$field->getId()] ] );
               }
             }

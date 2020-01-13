@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+<nav class="navbar navbar-expand-lg navbar-dark bg-info color_theme">
 
-    {% if app.user %}
+    {% if app.user and  app.user.personalization != null %}
         <a class="navbar-brand" href=" {{ path('home') }} "><img style="max-height: 46px !important;" src="{{ asset('/img/custom/logos/' ~ app.user.personalization.imageName) }}"/></a>
     {% endif %}
     {% if app.user == false %}

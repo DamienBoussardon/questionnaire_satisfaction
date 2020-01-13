@@ -1,61 +1,72 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 
-    let editSurveyPage = RegExp('show_survey_page*');
-    const pathCurrentPage =  window.location.pathname;
-
-    if(editSurveyPage.test(pathCurrentPage)){
-      var btnAddField = document.getElementById("btn_add_field_survey");
-      console.log('coucou'
-      )
-      btnAddField.addEventListener("mouseover", function( event ) {   
-        btnAddField.innerHTML = 'Ajouter un nouveau champ'
-        btnAddField.style.width = '350px' 
-        btnAddField.style.borderRadius = '60px'
-        btnAddField.style.fontSize = '1em';
-        btnAddField.style.lineHeight = '60px';
-        btnAddField.style.transitionProperty = "width"
-        btnAddField.style.transitionDuration = '1s';
-
-        setTimeout(function() {
-          btnAddField.innerHTML = '+' ;
-          btnAddField.style.fontSize = '3em';
-          btnAddField.style.width = '75px' ;
-          btnAddField.style.borderRadius = '75%';
-          btnAddField.style.lineHeight = '52.5px';
-          btnAddField.style.transitionProperty = "width, border-radius"
-          btnAddField.style.transitionDuration = '1s';
-        }, 4000);
-      }, false);
-    }
-    
+    let showSurveyPage = RegExp('show_survey_page*');
+    let editSurveyPage = RegExp('edit_survey_page*');
     let surveysPage = RegExp('admin/survey*');
 
-    if(surveysPage.test(pathCurrentPage)){
-      var btnAddSurvey = document.getElementById("btn_add_survey");
-      btnAddSurvey.addEventListener("mouseover", function( event ) {   
-        console.log(btnAddSurvey.innerHTML)
-        btnAddSurvey.innerHTML = 'Ajouter un nouveau formulaire'
-        btnAddSurvey.style.width = '350px' 
-        btnAddSurvey.style.borderRadius = '60px'
-        btnAddSurvey.style.fontSize = '1em';
-        btnAddSurvey.style.lineHeight = '60px';
-        btnAddSurvey.style.transitionProperty = "width"
-        btnAddSurvey.style.transitionDuration = '1s';
-        // réinitialise la couleur après un court moment
-        setTimeout(function() {
-          btnAddSurvey.innerHTML = '+' ;
-          btnAddSurvey.style.fontSize = '3em';
-          btnAddSurvey.style.width = '75px' ;
-          btnAddSurvey.style.borderRadius = '75%';
-          btnAddSurvey.style.lineHeight = '52.5px';
-          btnAddSurvey.style.transitionProperty = "width, border-radius"
-          btnAddSurvey.style.transitionDuration = '1s';
-        }, 4000);
-      }, false);
-      
-      
+    const pathCurrentPage =  window.location.pathname;
 
-      console.log("DOM entièrement chargé et analysé");
+    if(showSurveyPage.test(pathCurrentPage)){
+      this.custumBtnAddAction('btn_add_field_survey','Ajouter un nouveau champ')
+    }
+    
+    if(surveysPage.test(pathCurrentPage)){
+      this.custumBtnAddAction('btn_add_survey','Ajouter un nouveau formulaire')
     }
 
-  });
+
+    /**Formulaire ajout field */
+    if(editSurveyPage.test(pathCurrentPage)){
+
+      let inputSelect = document.getElementById("field_survey_typeReply");
+      
+      let elementLocation = document.getElementById("location_element_added");
+
+      inputSelect.addEventListener('change', function(){
+      
+        const typeSelected = inputSelect.value;
+        switch (typeSelected) {
+          case 'radio':
+            custumInputForFormField(elementLocation, 'Radio')
+            break;
+          case 'checkbox':
+            custumInputForFormField(elementLocation, 'Checkbox')
+            break
+          case 'select':
+            custumInputForFormField(elementLocation, 'Select')
+            break;
+          default:
+            elementLocation.innerHTML = "";
+        }
+      })
+    }
+
+});
+
+function custumInputForFormField(elmtLocation, typeInputSelected){
+  let modSyntaxTypeInput = typeInputSelected.toLowerCase();
+  elmtLocation.innerHTML = `<label for=\"input${typeInputSelected}Value\" >Valeurs Associées <span>( Ces valeurs seront affichées à l'utilisateur, lorsque ce formulaire lui sera soumis )</span></label><input id=\"input${typeInputSelected}Value\" placeholder=\"Séparer vos valeur d'une virgule\" name=\"_${modSyntaxTypeInput}_value\" type=\"text\" class=\"span12 field_form form-control\"></input>`;
+}
+
+function custumBtnAddAction(id_element, textInBtn){
+    var btnAddAction = document.getElementById(id_element);
+    btnAddAction.addEventListener("mouseover", function( event ) {   
+      btnAddAction.innerHTML = textInBtn
+      btnAddAction.style.width = '350px' 
+      btnAddAction.style.borderRadius = '60px'
+      btnAddAction.style.fontSize = '1em';
+      btnAddAction.style.lineHeight = '60px';
+      btnAddAction.style.transitionProperty = "width"
+      btnAddAction.style.transitionDuration = '1s';
+      // réinitialise la couleur après un court moment
+      setTimeout(function() {
+        btnAddAction.innerHTML = '+' ;
+        btnAddAction.style.fontSize = '3em';
+        btnAddAction.style.width = '75px' ;
+        btnAddAction.style.borderRadius = '75%';
+        btnAddAction.style.lineHeight = '52.5px';
+        btnAddAction.style.transitionProperty = "width, border-radius"
+        btnAddAction.style.transitionDuration = '1s';
+      }, 4000);
+    }, false);
+}

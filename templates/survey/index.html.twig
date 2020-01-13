@@ -3,7 +3,8 @@
 {% block title %}Questionnaire{% endblock %}
 
   {% block body %}
-  <div class="container pt-4">
+  <div class="container pt-5">
+       <h3>Liste des questionnaires</h3>
 
       {% if surveys|length > 0 %}
       
@@ -22,7 +23,7 @@
         {% endfor %}
       {% endif %}
    
-      <a href="{{ path('create_survey_page')}}" id="btn_add_survey" class="btn btn-info btn_add_survey">+</a>
+      <a href="{{ path('create_survey_page')}}" id="btn_add_survey" class="btn btn-info color_theme btn_add_survey">+</a>
       
   </div>
   {% endblock %}

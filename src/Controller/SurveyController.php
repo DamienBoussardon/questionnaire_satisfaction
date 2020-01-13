@@ -69,17 +69,36 @@ class SurveyController extends AbstractController
     public function formCreationFieldSurvey(Request $request, $id)
     {
         $currentSurvey = $this->surveyRepository->find($id);
+
+        $associatedValues = null;
         
         $fieldSurvey = new FieldSurvey();
-     
- 
+
+        $contentForm = $request->request->all();
+
+        if($contentForm != null){
+            if(isset($contentForm["_radio_value"]) && $contentForm["_radio_value"] != null){
+                $associatedValues​​NotProcessed = explode(",", $contentForm["_radio_value"]);
+                $associatedValues = array_map('trim', $associatedValues​​NotProcessed);
+            }
+            if(isset($contentForm["_checkbox_value"]) && $contentForm["_checkbox_value"] != null){
+                $associatedValues​​NotProcessed = explode(",", $contentForm["_checkbox_value"]);
+                $associatedValues = array_map('trim', $associatedValues​​NotProcessed);
+            }
+            if(isset($contentForm["_select_value"]) && $contentForm["_select_value"] != null){
+                $associatedValues​​NotProcessed = explode(",", $contentForm["_select_value"]);
+                $associatedValues = array_map('trim', $associatedValues​​NotProcessed);
+            }
+        }
+       
         $form = $this->createForm(FieldSurveyType::class,$fieldSurvey);
         $form->handleRequest($request);
 
-
-        if ($form->isSubmitted() && $form->isValid()) {
+     
+        if ($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
             $fieldSurvey->setSurvey($currentSurvey);
+            $fieldSurvey->setAssociatedValues($associatedValues);
             $em->persist($fieldSurvey);
             $em->flush();
 
@@ -117,5 +136,6 @@ class SurveyController extends AbstractController
         return $this->render('survey/show.html.twig', ['current_survey' => $currentSurvey]);
     
     }
+
 
 }

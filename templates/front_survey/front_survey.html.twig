@@ -15,7 +15,7 @@
         </div>
     {% endfor %}
 
-    <div class="container pt-4 d-flex p-2">
+    <div class="container pt-5 d-flex p-2">
     
      <form id="login_reply" action="{{ path('questionnaire', {'id': survey.id}) }}" method="post">
 
@@ -30,15 +30,54 @@
                 <div class="form_group">
                     <label>{{ field.question }} ?</label>
                     {% if field.typeReply == 'textarea' %}
+
                         <textarea placeholder="Entrer votre réponse" name="{{ field.id }}" class="span12 form-control"></textarea>
+
+                    {% elseif field.typeReply == 'select' %}
+
+                        <select class="custom-select custom-select-lg mb-3" name="{{ field.id }}" id="{{ field.id }}" multiple size="{{field.associatedValues|length}}">
+                             {% for value in field.associatedValues%}
+                                <option value="{{ value }}">{{ value }}</option>
+                            {% endfor %}
+                        </select>
+
+                    {% elseif field.typeReply == 'checkbox'  %}
+                        <div class="allFrontCheckbox form-check-inline">
+                        {% for value in field.associatedValues%}
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="{{ field.typeReply }}" id="{{ field.id ~ "-" ~ value ~ "-checkbox" }}" name="{{ field.id ~ "[]" }} " value="{{ value}}">
+
+                                <label class="custom-control-label" for="{{ field.id ~ "-" ~ value ~ "-checkbox" }}">{{ value }}</label>
+                            </div>
+                        {% endfor %}
+                        </div>
+                        {% elseif field.typeReply == 'radio' %}
+                            <div class="allFrontRadio form-check-inline">
+                            {% for value in field.associatedValues%}
+                                <div class=" form-check custom-control custom-radio">
+                                
+                                    <input class="custom-control-input" type="{{ field.typeReply }}" id="{{ field.id ~ "-" ~ value}}" name="{{ field.id }}" value="{{ value }}" {{ value == field.associatedValues[0] ? 'checked' : '' }} >
+
+                                    <label class="custom-control-label" for="{{ field.id ~ "-" ~ value }}">{{ value }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% elseif field.typeReply == 'date' %}
+
+                            <input type="date" id="start" name="{{ field.id }}" value="{{  "now"|date("d/m/Y") }}" >
+
+
                     {% else %}
+
                         <input placeholder="Entrer votre réponse" name="{{ field.id }}" type="{{ field.typeReply }}" class="span12 field_form form-control"></input>
+                    
                     {% endif %}
                 </div>
+
             {% endfor %}
 
             <div class="form-group d-flex justify-content-center">
-                <button type="submit" class="btn btn-info">Envoyer</button>
+                <button type="submit" class="btn btn-info color_theme">Envoyer</button>
             </div>
        </form>
     </div>

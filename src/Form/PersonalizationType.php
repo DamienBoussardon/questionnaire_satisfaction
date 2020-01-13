@@ -14,8 +14,13 @@ class PersonalizationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('color', ColorType::class)
-            ->add('imageFile', VichImageType::class)
+            ->add('color', ColorType::class, array(
+                'label' => 'Couleur de Personalisation',
+            ))
+            ->add('imageFile', VichImageType::class, array(
+                'required' => false,
+                'label' => 'Logo',
+            ))
         ;
     }
 
