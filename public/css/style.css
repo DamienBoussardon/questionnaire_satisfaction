@@ -119,6 +119,15 @@ form[name='field_survey'] button{
      background-position: center;
      background-size: cover;
  }
+ .home .home_container .container_text_secondary{
+    margin: 2em .5em;
+ }
+ .home .home_container .container_text_secondary p{
+    margin-top: 0;
+    font-size: 1.1em;
+    margin-bottom: .2rem;
+ }
+ 
  .home_filter{
     min-height: calc(100vh - 70px);
     background: linear-gradient(135deg, rgba(82, 180, 195, 0.03), rgba(82, 180, 195, 0.03), 60%, rgba(13,88,99, 0.2));
@@ -132,27 +141,27 @@ form[name='field_survey'] button{
 .btn_connection{
     font-size: 1.4em;
     padding: 1em 1.25em;
-    border: 4px solid #17a2b8 ;
-    color: #17a2b8;
+    border: 4px solid #000000 ;
+    color: #000000;
     border-radius:2px ;
 }
 
 .btn_connection:hover{
     text-decoration: none;
-    color: #138496;
-    border: 4px solid #138496;;
+    color: #363636;
+    border: 4px solid #363636;
 }
 .btn_creation{
     font-size: 1.4em;
     padding: 1em 1.25em;
-    border: 4px solid #17a2b8 ;
+    border: 4px solid #000000 ;
     color: white;
-    background-color: #17a2b8;
+    background-color: #000000;
     border-radius:2px ;
 }
 .btn_creation:hover{
     text-decoration: none;
-    background-color:  #138496;;
+    background-color:  #363636;;
     color: white;
 }
 

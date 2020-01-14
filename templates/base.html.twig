@@ -10,7 +10,13 @@
         
         {% block stylesheets %}
             <link href="{{ asset('/css/style.css') }}" rel="stylesheet" />
-
+            {% if app.user == false %}
+                <style>
+                .color_theme{
+                    background: #000000 !important;
+                }
+                </style>
+            {% endif %}
             {% if app.user and  app.user.personalization != null %}
                 <style>
                 .color_theme{
@@ -18,6 +24,7 @@
                 }
                 </style>
             {% endif %}
+             
         {% endblock %}
         
     </head>
