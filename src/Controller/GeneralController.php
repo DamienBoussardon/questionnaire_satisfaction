@@ -21,7 +21,7 @@ class GeneralController extends AbstractController
 
 
       /**
-     * @Route(path="/dashboard", name="dashboard")
+     * @Route(path="/plateforme/dashboard", name="dashboard")
      * @return Response
      */
     public function statisticalDashoard(): Response

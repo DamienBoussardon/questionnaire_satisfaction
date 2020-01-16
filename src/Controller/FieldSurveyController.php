@@ -23,17 +23,18 @@ class FieldSurveyController extends AbstractController
 
 
     /**
-     * @Route(path="/admin/delete_field/{id}", name="delete_field")
+     * @Route(path="/plateforme/delete_field/{id}", name="delete_field")
      */
     public function deleteField($id)
     {
         $currentField = $this->fieldSurveyRepository->find($id);
+        $currentSurvey = $currentField->getSurvey(); 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($currentField);
         $entityManager->flush();
 
     
-        return $this->redirectToRoute('survey');
+        return $this->redirectToRoute('survey',  array('id' => $currentSurvey->getId()));
     }
 
 }

@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une nouvelle Question{% endblock %}
+{% block title %}Ajouter une nouvelle Question
+{% endblock %}
 
 {% block body %}
-<div class="container pt-5">
-    <h3>Formulaire de création et d'ajout de champ</h3>
+	<div class="container pt-5">
+		<h3>Formulaire de création et d'ajout de champ</h3>
 
-    {{ form_start(form) }}
-    <div class="form-group">
-        {{ form_row(form.question) }}
-        {{ form_row(form.typeReply) }}
-        <div id="location_element_added" class="form-group"></div>
-        <button class="btn btn-info color_theme">{{ button_label|default('Enregistrer') }}</button>
-    </div>
-    {{ form_end(form) }}
+		{{ form_start(form) }}
+		<div class="form-group">
+			{{ form_row(form.question) }}
+			{{ form_row(form.typeReply) }}
+			<div id="location_element_added" class="form-group"></div>
+			<button class="btn btn-info color_theme">{{ button_label|default('Enregistrer') }}</button>
+		</div>
+		{{ form_end(form) }}
 
-    <a href="{{ path('survey') }}" class="btn btn-secondary"> Retour vers les formulaires</a>
-</div>
+		<a href="{{ path('surveys') }}" class="btn btn-secondary">
+			Retour vers les formulaires</a>
+	</div>
 {% endblock %}

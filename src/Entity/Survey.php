@@ -43,10 +43,6 @@ class Survey
      */
     private $fieldSurveys;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $numbreOfQuestion;
 
     public function __construct($user)
     {
@@ -140,18 +136,6 @@ class Survey
                 $fieldSurvey->setSurvey(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getNumbreOfQuestion(): ?int
-    {
-        return $this->numbreOfQuestion;
-    }
-
-    public function setNumbreOfQuestion(int $numbreOfQuestion): self
-    {
-        $this->numbreOfQuestion = $numbreOfQuestion;
 
         return $this;
     }

@@ -26,21 +26,32 @@ class SurveyController extends AbstractController
     }
 
     /**
-     * @Route(path="/admin/survey", name="survey", methods="GET")
+     * @Route(path="/plateforme/surveys", name="surveys")
      * @return Response
      */
-    public function index(): Response
+    public function show(): Response
     {
 
         $user_id = $this->getUser()->getId();
         $surveys = $this->surveyRepository->findSurveyByUserId($user_id);
 
-        return $this->render('survey/index.html.twig',['surveys' => $surveys]);
+        return $this->render('survey/show.html.twig',['surveys' => $surveys]);
 
     }
 
+          /**
+     * @Route(path="/plateforme/surveys/{id}", name="survey")
+     */
+    public function  index(Request $request, $id)
+    {
+        $currentSurvey = $this->surveyRepository->find($id);
+
+        return $this->render('survey/index.html.twig', ['current_survey' => $currentSurvey]);
+    
+    }
+
     /**
-     * @Route(path="/admin/create_survey_page", name="create_survey_page")
+     * @Route(path="/plateforme/create_survey_page", name="create_survey_page")
      */
     public function formCreationSurvey(Request $request)
     {
@@ -55,7 +66,7 @@ class SurveyController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($survey);
                 $em->flush();
-                return $this->redirectToRoute('show_survey_page', ['id' => $survey->getId()]);
+                return $this->redirectToRoute('survey', ['id' => $survey->getId()]);
             }
             return $this->render('survey/form.html.twig', array(
                 'form' => $form->createView(),
@@ -63,8 +74,23 @@ class SurveyController extends AbstractController
             
     }
 
+    /**
+     * @Route(path="/plateforme/delete_survey_page/{id}/", name="delete_survey_page")
+     */
+    public function deleteSurvey($id)
+    { 
+       
+        $currentSurvey = $this->surveyRepository->find($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($currentSurvey);
+        $entityManager->flush();
+
+    
+        return $this->redirectToRoute('surveys');
+    }
+
      /**
-     * @Route(path="/admin/edit_survey_page/{id}", name="edit_survey_page")
+     * @Route(path="/plateforme/edit_survey_page/{id}", name="edit_survey_page")
      */
     public function formCreationFieldSurvey(Request $request, $id)
     {
@@ -102,7 +128,7 @@ class SurveyController extends AbstractController
             $em->persist($fieldSurvey);
             $em->flush();
 
-            return $this->redirectToRoute('survey');
+            return $this->redirectToRoute('survey',  array('id' => $currentSurvey->getId()));
         }
     
         return $this->render('field_survey/edit.html.twig', array(
@@ -111,31 +137,9 @@ class SurveyController extends AbstractController
 
     }
 
-     /**
-     * @Route(path="/admin/delete_survey_page/{id}/", name="delete_survey_page")
-     */
-    public function deleteSurvey($id)
-    { 
-       
-        $currentSurvey = $this->surveyRepository->find($id);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($currentSurvey);
-        $entityManager->flush();
+ 
 
-    
-        return $this->redirectToRoute('survey');
-    }
 
-      /**
-     * @Route(path="/admin/show_survey_page/{id}", name="show_survey_page")
-     */
-    public function  showSurvey(Request $request, $id)
-    {
-        $currentSurvey = $this->surveyRepository->find($id);
-
-        return $this->render('survey/show.html.twig', ['current_survey' => $currentSurvey]);
-    
-    }
 
 
 }

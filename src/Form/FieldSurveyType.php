@@ -15,7 +15,7 @@ class FieldSurveyType extends AbstractType
             ->add('question')
             ->add('typeReply', ChoiceType::class, array(
                 'choices'=> [
-                    'Texte de moins 255 caratère' =>   "text",
+                    'Texte de moins 255 caratères' =>   "text",
                     'Texte de plus 255 caratères' =>   "textarea",
                     'Coche'                       =>   "checkbox",
                     'Puce'                        =>   "radio",

@@ -25,7 +25,7 @@ class PersonalizationController extends AbstractController
 
 
     /**
-     * @Route(path="/admin/personalisation", name="personalization")
+     * @Route(path="/plateforme/personalisation", name="personalization")
      */
     public function editPersonalization(Request $request)
     {
@@ -49,7 +49,7 @@ class PersonalizationController extends AbstractController
             $entityManager->persist($personalization);
             $entityManager->flush();
 
-            return $this->redirectToRoute('survey');
+            return $this->redirectToRoute('surveys');
         }
 
         return $this->render('personalization/edit.html.twig', array(

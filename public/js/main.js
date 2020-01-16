@@ -1,22 +1,24 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 
-    let showSurveyPage = RegExp('show_survey_page*');
+    let indexSurveyPage = RegExp('/plateforme/surveys/*');
     let editSurveyPage = RegExp('edit_survey_page*');
-    let surveysPage = RegExp('admin/survey*');
+    let showSurveysPage = '/plateforme/surveys';
 
     const pathCurrentPage =  window.location.pathname;
 
-    if(showSurveyPage.test(pathCurrentPage)){
-      this.custumBtnAddAction('btn_add_field_survey','Ajouter un nouveau champ')
-    }
-    
-    if(surveysPage.test(pathCurrentPage)){
+    if( showSurveysPage === pathCurrentPage ){
       this.custumBtnAddAction('btn_add_survey','Ajouter un nouveau formulaire')
     }
 
+    if( indexSurveyPage.test(pathCurrentPage) ){
+      this.custumBtnAddAction('btn_add_field_survey','Ajouter un nouveau champ')
+    }
+    
+
+
 
     /**Formulaire ajout field */
-    if(editSurveyPage.test(pathCurrentPage)){
+    if( editSurveyPage.test(pathCurrentPage) ){
 
       let inputSelect = document.getElementById("field_survey_typeReply");
       
