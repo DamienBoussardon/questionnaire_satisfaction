@@ -25,8 +25,9 @@ security:
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
             form_login:
-                login_path: /dashboard
                 check_path: login
+                target_path_parameter: go_to
+                failure_path_parameter: back_to
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
