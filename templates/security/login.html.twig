@@ -5,16 +5,17 @@
 {% block body %}
 
 	<div class="container mt-6 pt-4">
-
+		
 		{% if lastAuthenticationError %}
-			<div class="allert alert-danger">
-				<p>{{lastAuthenticationError.messageKey | trans(lastAuthenticationError.messagedata, 'security') }}</p>
+			<div class="flash-message alert alert-danger" role="alert">
+				<p>{{lastAuthenticationError.messageKey|trans(lastAuthenticationError.messagedata, 'security') }}</p>
 			</div>
 		{% endif %}
 
-		<div class="d-flex justify-content-center align-items-center">
+		<div class="d-flex justify-content-center align-items-center container_login_form">
 
-			<form id="login_form" action="{{ path('login') }}" method="post">
+
+			<form name="login_form" id="login_form" action="{{ path('login') }}" method="post">
 				<h1>Connexion</h1>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Adresse Email</label>

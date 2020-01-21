@@ -4,11 +4,11 @@
 
  {% block body %}
    <div class="container pt-5">
-      <h3>Formulaire de paramétrage</h3>
-
+      <h3 class="mb-3">Formulaire de paramétrage</h3>
+      <p class="fw_500 text-secondary mb-5">Ici, vous pouvez personnaliser le rendu visuel de la page où sera accessible votre formulaire</p>
       <div class="">
          {{ form_start(form) }}
-           <div class="contaire">
+           <div class="">
             {{ include('partials/_form.html.twig',  {'button_label': 'Configurer'}) }}
          </div>
       </div>

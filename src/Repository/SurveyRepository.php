@@ -37,7 +37,7 @@ class SurveyRepository extends ServiceEntityRepository
 
     
     */
-    public function findSurveyByUserId($value)
+    public function findSurveysByUserId($value)
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.user = :val')
@@ -47,6 +47,18 @@ class SurveyRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+  
+
+    public function  findSurveyByHash($value): ?Survey
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.hashIdentifier = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Survey
     {

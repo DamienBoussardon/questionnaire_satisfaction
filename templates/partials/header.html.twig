@@ -1,10 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-info color_theme">
 
-    {% if app.user and  app.user.personalization != null %}
-        <a class="navbar-brand" href=" {{ path('home') }} "><img style="max-height: 46px !important;" src="{{ asset('/img/custom/logos/' ~ app.user.personalization.imageName) }}"/></a>
+    {% if  app.user and app.user.personalization != null %}
+        <a class="navbar-brand" href=" {{ path('home') }} " ><img style="max-height: 46px !important;"
+        src="{{ asset('/img/custom/logos/' ~ app.user.personalization.imageName) }}"/></a>
     {% endif %}
-    {% if app.user == false %}
-        <a class="navbar-brand" href=" {{ path('home') }} "><img style="max-height: 46px !important;" src="{{ asset('/img/custom/logos/default/logo-default.png') }}"/></a>
+    
+    {% if app.user == false  %}
+       <a class="navbar-brand" href=" {{ path('home') }} "s ><img style="max-height: 46px !important;"
+        src="{{ app.request.get('_route') == 'questionnaire' ? asset('/img/custom/logos/' ~ personalization.imageName) : asset('/img/custom/logos/default/logo-default.png') }}"/></a>
     {% endif %}
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,33 +15,26 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-     {% if app.user %}
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('dashboard') }}">Tableau de bord<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('surveys') }}">Formulaires<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('personalization') }}">Personnalisation<span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
+        {% if app.user %}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('dashboard') }}">Tableau de bord<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('surveys') }}">Formulaires<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('personalization') }}">Personnalisation<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         {% endif %}
         {% if app.user %}
             <ul class="navbar-nav">
                 <li class="nav-item  active">
-                    <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
+                    <a href="{{ path('logout') }}" class="nav-link fw_500">Se déconnecter</a>
                 </li>
             </ul>
         {% endif %}
-        {# {% if app.user == false %}
-        <ul class="navbar-nav">
-            <li class="nav-item  active">
-                <a href="{{ path('login') }}" class="nav-link">Se connecter</a>
-            </li>
-        </ul>
-    {% endif %} #}
     </div>
 </nav>
 

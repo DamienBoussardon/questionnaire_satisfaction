@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class GeneralController extends AbstractController
@@ -14,9 +16,12 @@ class GeneralController extends AbstractController
      * @Route(path="/", name="home")
      * @return Response
      */
-    public function index(): Response
-    {
-          return $this->render('pages/home.html.twig');
+    public function index(Request $request): Response
+    {       
+      $response = new Response();
+            $response->headers->setCookie(Cookie::create('acceptCookie', 'false'));
+            echo ($response);
+            return $this->render('pages/home.html.twig');
     }
 
 
@@ -64,5 +69,15 @@ class GeneralController extends AbstractController
     {
           return $this->render('pages/legales_mentions.html.twig');
     }
+
+      /**
+     * @Route(path="/general_condition", name="general_condition")
+     * @return Response
+     */
+    public function showGeneralCondition(): Response
+    {
+          return $this->render('pages/general_condition.html.twig');
+    }
+
 
 }

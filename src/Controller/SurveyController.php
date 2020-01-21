@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Form\SurveyType;
-use App\Entity\Survey;
 use App\Form\FieldSurveyType;
 use App\Entity\FieldSurvey;
+use App\Entity\Survey;
 use App\Repository\SurveyRepository;
+use App\Service\HashGenerator;
+use App\Service\CustomUserEntry;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,10 +21,13 @@ class SurveyController extends AbstractController
     * @var SurveyRepository
     */
     private $surveyRepository;
+    private $hashGenerator;
 
-    public function __construct(SurveyRepository $surveyRepository)
+    public function __construct(SurveyRepository $surveyRepository, HashGenerator $hashGenerator, CustomUserEntry $customUserEntry)
     {
         $this->surveyRepository = $surveyRepository;
+        $this->hashGenerator = $hashGenerator;
+        $this->customUserEntry = $customUserEntry;
     }
 
     /**
@@ -33,7 +38,7 @@ class SurveyController extends AbstractController
     {
 
         $user_id = $this->getUser()->getId();
-        $surveys = $this->surveyRepository->findSurveyByUserId($user_id);
+        $surveys = $this->surveyRepository->findSurveysByUserId($user_id);
 
         return $this->render('survey/show.html.twig',['surveys' => $surveys]);
 
@@ -59,10 +64,11 @@ class SurveyController extends AbstractController
 
             $survey = new Survey($user);
             $form = $this->createForm(SurveyType::class, $survey);
-  
+            $hash = $this->hashGenerator->getHash();
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $survey->setHashIdentifier($hash);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($survey);
                 $em->flush();
@@ -94,33 +100,28 @@ class SurveyController extends AbstractController
      */
     public function formCreationFieldSurvey(Request $request, $id)
     {
-        $currentSurvey = $this->surveyRepository->find($id);
-
-        $associatedValues = null;
-        
         $fieldSurvey = new FieldSurvey();
-
+        $associatedValues = null;
+        $currentSurvey = $this->surveyRepository->find($id);
         $contentForm = $request->request->all();
 
+
         if($contentForm != null){
-            if(isset($contentForm["_radio_value"]) && $contentForm["_radio_value"] != null){
-                $associatedValues​​NotProcessed = explode(",", $contentForm["_radio_value"]);
-                $associatedValues = array_map('trim', $associatedValues​​NotProcessed);
+        
+            $question = $contentForm["field_survey"]["question"];
+            $questionCustomize = $this->customUserEntry->customNameOfQuestion($question);
+            $fieldSurvey->setQuestion($questionCustomize);
+            
+            if(isset($contentForm["_associated_values"]) && $contentForm["_associated_values"] != null){
+                $associatedValues​​NotProcessed = explode(",", $contentForm["_associated_values"]);
+                $associatedValues = $this->customUserEntry->customCollectionOfAssociatedValue($associatedValues​​NotProcessed);
             }
-            if(isset($contentForm["_checkbox_value"]) && $contentForm["_checkbox_value"] != null){
-                $associatedValues​​NotProcessed = explode(",", $contentForm["_checkbox_value"]);
-                $associatedValues = array_map('trim', $associatedValues​​NotProcessed);
-            }
-            if(isset($contentForm["_select_value"]) && $contentForm["_select_value"] != null){
-                $associatedValues​​NotProcessed = explode(",", $contentForm["_select_value"]);
-                $associatedValues = array_map('trim', $associatedValues​​NotProcessed);
-            }
+
         }
        
         $form = $this->createForm(FieldSurveyType::class,$fieldSurvey);
         $form->handleRequest($request);
 
-     
         if ($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
             $fieldSurvey->setSurvey($currentSurvey);

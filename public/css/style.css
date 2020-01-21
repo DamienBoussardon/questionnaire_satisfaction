@@ -5,14 +5,34 @@
 /* .h-80vh{
     height: 80vh;
 } */
+a:hover{
+    text-decoration: none;
+}
 .min_heigth{
-    height: calc(100vh - 72px);
+    min-height: calc(100vh - 72px);
 }
 .cwa_link{
     font-family: gunplay;
     font-size: 1.2em;
 }
+.fw_500{
+    font-weight: 500;
+}
 
+.container h3{
+    margin-bottom: 1.5em;
+}
+
+@media all and (prefers-color-scheme: dark) {
+    body {
+      background: black;
+      color: lime;
+    }
+  }
+/* .navbar-collapse{
+    min-height: 72px;
+    max-width: 72px;
+} */
 /***LOGIN_FORM****/
 #login_form{
     border: 1px solid #ced4da;
@@ -20,11 +40,12 @@
     padding: 2em 2em 1em 2em;
     /*width: 325px;*/
 }
-
 .login_submit{
     margin-top: 1em
 }
-
+.container_registration_form,  .container_login_form{
+    height: calc(100vh - (144px + 1.5rem));
+}
 /****PAGE_QUESTIONNAIRES****/
 .btn_add_survey{
     position: absolute;
@@ -134,7 +155,7 @@ form[name='field_survey'] button{
     margin-bottom: .2rem;
  }
  
- .home_filter{
+.home_filter{
     min-height: calc(100vh - 70px);
     background: linear-gradient(135deg, rgba(82, 180, 195, 0.03), rgba(82, 180, 195, 0.03), 60%, rgba(13,88,99, 0.2));
 }
@@ -205,8 +226,39 @@ form[name="registration_form"]{
 .vich-image a:last-child{
     display: none;
 }
+.vich-image .custom-file{
+    margin-bottom: 1em;
+}
+.vich-image a{
+    padding: 1rem;
+    /*background-color: rgba(0,0,0, 0.8);*/
+    border: 10px solid rgb(54,54,54) ;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+}
+.vich-image a img{
+    filter: invert(0.30);
+    max-width: 250px;
+    max-height: 250px;
+}
 
 
-.container h3{
-    margin-bottom: 1.5em;
+/**PERSONAL_DATA_CHARTER PAGE**/
+
+.container_personal_charter, h4{
+    margin-top:  1.5rem;
+}
+.container_personal_charter, .container_personal_charter h2, .container_personal_charter h4{
+    margin-bottom:  1rem;
+}
+.container_personal_charter p{
+    padding-left:  1rem;
+}
+
+/***FOOTER**/
+footer a:hover{
+    color:white;
 }

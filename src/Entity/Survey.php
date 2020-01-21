@@ -43,6 +43,11 @@ class Survey
      */
     private $fieldSurveys;
 
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $hashIdentifier;
+
 
     public function __construct($user)
     {
@@ -142,5 +147,17 @@ class Survey
 
     public function __toString() {
         return $this->name;
+    }
+
+    public function getHashIdentifier(): ?string
+    {
+        return $this->hashIdentifier;
+    }
+
+    public function setHashIdentifier(string $hashIdentifier): self
+    {
+        $this->hashIdentifier = $hashIdentifier;
+
+        return $this;
     }
 }

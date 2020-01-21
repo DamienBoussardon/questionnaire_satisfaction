@@ -11,6 +11,7 @@ use App\Entity\Reply;
 use App\Entity\PersonSurveyed;
 use App\Repository\SurveyRepository;
 use App\Repository\FieldSurveyRepository;
+use App\Repository\PersonalizationRepository;
 use App\Repository\PersonSurveyedRepository;
 use App\Repository\ReplyRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,37 +27,41 @@ class FrontController extends AbstractController
   private $surveyRepository;
   private $fieldSurveyRepository;
   private $replyRepository;
+  private $personalizationRepository;
 
   public function __construct(
                               PersonSurveyedRepository $personSurveyedRepository, 
                               SurveyRepository $surveyRepository, 
                               FieldSurveyRepository $fieldSurveyRepository,
-                              ReplyRepository $replyRepository)
+                              ReplyRepository $replyRepository,
+                              PersonalizationRepository $personalizationRepository)
   {
       $this->personSurveyedRepository = $personSurveyedRepository;
       $this->surveyRepository = $surveyRepository;
       $this->fieldSurveyRepository = $fieldSurveyRepository;
       $this->replyRepository = $replyRepository;
+      $this->personalizationRepository = $personalizationRepository;
   }
   
 
 
     /**
-     * @Route(path="/questionnaire_{id}", name="questionnaire")
+     * @Route(path="/questionnaire_{hash}", name="questionnaire")
     */
-    public function responseOfSurvey(Request $request, $id) {
-        
-      $survey =  $this->surveyRepository->find($id);
+    public function responseOfSurvey(Request $request, $hash) {
+      $survey =  $this->surveyRepository->findSurveyByHash($hash);
+      $user_id = $survey->getUser()->getId();
+      $personalization = $this->personalizationRepository->findPersonalizationByUserId($user_id);
       $fields =  $this->fieldSurveyRepository->findAllFieldSurvayBySurveyId($survey->getId());
       $content = $request->request->all();;
 
       if($content != null){
-        dump( $request->request);
         $this->valueTraitement($content , $fields ,$survey);
       }
   
       return $this->render('front_survey/front_survey.html.twig', array(
         'list_field' => $fields,
+        'personalization' => $personalization,
         'survey' => $survey
       ));
 
@@ -75,34 +80,23 @@ class FrontController extends AbstractController
 
           $personSurveyedExist = $this->personSurveyedRepository->findOneByEmail($emailOfPersonSurveyed);
 
-          dump( $personSurveyedExist);
-        
-    
           if ( $personSurveyedExist == null){
               $personSurveyed = new PersonSurveyed();
               $personSurveyed->setEmail($emailOfPersonSurveyed);
               $entityManager->persist($personSurveyed);
               $entityManager->flush();
               $idOfPersonSurveyed = $personSurveyed->getId();
-              // dump( $idOfPersonSurveyed);
           }else{
             $idOfPersonSurveyed  = $personSurveyedExist->getId();
-            // dump( $idOfPersonSurveyed);
           }
           
           $personSurveyed = $this->personSurveyedRepository->find($idOfPersonSurveyed);
 
           $alreadyAnswered = $this->replyRepository->findReplyBySurveyAndPersonSurveyed($survey, $personSurveyed);
 
-          dump($alreadyAnswered);
-
           if ( $alreadyAnswered == null ){
-            dump($data);
+            // verifie si $field != null et l'ajout a l'array $mapping
             foreach($fields as $field ){
-              // verifie si $field != null et l'ajout a l'array $mapping
-           
-
-       
               if( isset($data[$field->getId()] ) && $data[$field->getId()] != null ){
                 array_push($mapping, [ $field->getId() => $data[$field->getId()] ] );
               }

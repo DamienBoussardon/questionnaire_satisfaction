@@ -3,17 +3,22 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="container mt-6 pt-4">
-    <div class="d-flex justify-content-center align-items-center" >
+    <div class="container mt-6 pt-4 ">
+    <div class="d-flex justify-content-center align-items-center container_registration_form" >
         {{ form_start(registrationForm) }}
             <h1>Inscription</h1>
             {{ form_row(registrationForm.email, { 'attr': {'class': "span12",
     'placeholder': 'toto@exemple.com'} } ) }}
             {{ form_row(registrationForm.plainPassword, { 'attr': {'class': "span12",
     'placeholder': 'Mot de passe de 6 caractères minimum'} } ) }}
-            {{ form_row(registrationForm.agreeTerms) }}
+          
+            {% set formHtml %}
+            {{ form_row(registrationForm.agreeTerms, {'label_attr': {'class': 'checkbox-custom'} }) }}
+            {% endset %}
+            {{ formHtml|replace({'[link]': '<a href="http://localhost:8000/general_condition">', '[/link]': '</a>'})|raw }}
+
             <div class="form-group d-flex justify-content-center">
-                <button class="btn btn-info">Inscription</button>
+                <button class="btn btn-info color_theme">Inscription</button>
             </div> 
         {{ form_end(registrationForm) }}
     </div>   

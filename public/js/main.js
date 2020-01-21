@@ -1,3 +1,4 @@
+
 window.addEventListener("DOMContentLoaded", (event) => {
 
     let indexSurveyPage = RegExp('/plateforme/surveys/*');
@@ -11,7 +12,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
 
     if( indexSurveyPage.test(pathCurrentPage) ){
-      this.custumBtnAddAction('btn_add_field_survey','Ajouter un nouveau champ')
+      this.custumBtnAddAction('btn_add_field_survey','Ajouter une question')
     }
     
 
@@ -47,7 +48,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 function custumInputForFormField(elmtLocation, typeInputSelected){
   let modSyntaxTypeInput = typeInputSelected.toLowerCase();
-  elmtLocation.innerHTML = `<label for=\"input${typeInputSelected}Value\" >Valeurs Associées <span>( Ces valeurs seront affichées à l'utilisateur, lorsque ce formulaire lui sera soumis )</span></label><input id=\"input${typeInputSelected}Value\" placeholder=\"Séparer vos valeur d'une virgule\" name=\"_${modSyntaxTypeInput}_value\" type=\"text\" class=\"span12 field_form form-control\"></input>`;
+  elmtLocation.innerHTML = `<label for=\"input${typeInputSelected}Value\" >Valeurs Associées <span>( Ces valeurs seront affichées à l'utilisateur, lorsque ce formulaire lui sera soumis )</span></label><input id=\"input${typeInputSelected}Value\" placeholder=\"Séparer vos valeur d'une virgule\" name=\"_associated_values\" type=\"text\" class=\"span12 field_form form-control\"></input>`;
 }
 
 function custumBtnAddAction(id_element, textInBtn){

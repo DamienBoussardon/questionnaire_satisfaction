@@ -20,6 +20,9 @@ class PersonalizationType extends AbstractType
             ->add('imageFile', VichImageType::class, array(
                 'required' => false,
                 'label' => 'Logo',
+                'download_label' => 'download',
+                'delete_label'          => 'Voulez vous supprimer l\'image ?',
+                
             ))
         ;
     }

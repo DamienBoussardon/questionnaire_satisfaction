@@ -5,13 +5,14 @@
 {% block body %}
 <div class="container pt-5">
     <h3>{{ current_survey.name }}</h3>
+    <p class="fw_500">Adresse de publication du formulaire : <span class="text-secondary">http://localhost:8000/questionnaire_{{ current_survey.hashIdentifier }} <i class="fa fa-globe ml-2" style="font-size:24px"></i></span></p>
     {% for field_survey in current_survey.fieldSurveys %}
      <div class="section_display d-flex justify-content-between  align-items-center" >
         <div>
          <p>{{ field_survey.question }} ?</p>
         </div>
             <div>
-                <a href="{{ path( 'delete_field',{'id': field_survey.id} )}}" ><i class="fa fa-trash-o" style="font-size:24px;color:red;margin-left:1em;"></i></a>
+                <a href="{{ path( 'delete_field',{'id': field_survey.id} )}}" ><i class="fa fa-trash-o" data-toggle="tooltip" data-placement="top" title="Supprimer cette question" style="font-size:24px;color:red;margin-left:1em;"></i></a>
             </div>
         </div>
 
