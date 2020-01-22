@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let indexSurveyPage = RegExp('/plateforme/surveys/*');
     let editSurveyPage = RegExp('edit_survey_page*');
     let showSurveysPage = '/plateforme/surveys';
+    let replyPage = RegExp('questionnaire_*');
 
     const pathCurrentPage =  window.location.pathname;
 
@@ -15,6 +16,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
       this.custumBtnAddAction('btn_add_field_survey','Ajouter une question')
     }
     
+
+    if( replyPage.test(pathCurrentPage) ){
+      let modal = document.getElementById("modal");
+      let modalBtnClose = document.getElementById("acceptTerms");
+      modalBtnClose.addEventListener('click', function(){
+          modal.classList.remove("modal_active");
+      })
+    }
 
 
 
@@ -73,3 +82,5 @@ function custumBtnAddAction(id_element, textInBtn){
       }, 4000);
     }, false);
 }
+
+$(function () {$('[data-toggle="tooltip"]').tooltip()}); $(function () {$('.sell').selectpicker()});

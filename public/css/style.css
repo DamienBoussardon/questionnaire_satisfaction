@@ -2,14 +2,12 @@
     font-family:'gunplay';
     src:url("../fonts/gunplay.ttf")
 }
-/* .h-80vh{
-    height: 80vh;
-} */
+
 a:hover{
     text-decoration: none;
 }
 .min_heigth{
-    min-height: calc(100vh - 72px);
+    height: calc(100vh - 72px);
 }
 .cwa_link{
     font-family: gunplay;
@@ -18,33 +16,62 @@ a:hover{
 .fw_500{
     font-weight: 500;
 }
-
 .container h3{
     margin-bottom: 1.5em;
 }
 
-@media all and (prefers-color-scheme: dark) {
-    body {
-      background: black;
-      color: lime;
-    }
-  }
-/* .navbar-collapse{
-    min-height: 72px;
-    max-width: 72px;
-} */
+/****COLOR_THEME_DEFAULT****/
+.color_theme {
+    background: #000000 !important;
+} 
+.color_text_theme {
+    color: white;
+}
+
+/****FOOTER****/
+footer a:hover{
+    color:white;
+}
+
+/****MODAL****/
+.modal_active{
+    display: block !important;
+    background-color: rgba(0,0,0, 0.7);
+    backdrop-filter: blur(8px);
+}
+.modal-dialog {
+    margin-top: 25vh !important;
+}
+
+
 /***LOGIN_FORM****/
+
 #login_form{
     border: 1px solid #ced4da;
     border-radius: .25em;
     padding: 2em 2em 1em 2em;
-    /*width: 325px;*/
 }
+form[name="login_form"] .btn{
+    border-color: #363636;
+}
+
 .login_submit{
     margin-top: 1em
 }
+
 .container_registration_form,  .container_login_form{
     height: calc(100vh - (144px + 1.5rem));
+}
+
+/**FROM REGISTER**/
+form[name="registration_form"]{
+    border: 1px solid #ced4da;
+    border-radius: .25em;
+    padding: 2em 2em 1em 2em;
+    width: 430px;
+}
+form[name="registration_form"] .btn{
+    border-color: #363636;
 }
 /****PAGE_QUESTIONNAIRES****/
 .btn_add_survey{
@@ -58,12 +85,12 @@ a:hover{
     line-height: 52.5px;
     vertical-align: middle;
     box-shadow: 10px 10px 10px rgba(13,88,99, 0.1);
-    overflow: hidden;
+    /* overflow: hidden; */
 }
-.btn_add_survey:hover{
+/* .btn_add_survey:hover{
     line-height: 49px;
     border: 3px solid #1EC9E3;
-}
+} */
 /**GLOBAL STYLE IN INDEX AND SHOW SURVEY**/
 .section_display{
     padding: 2em 1em;
@@ -98,39 +125,49 @@ form[name='field_survey'] button{
     border-radius: .25em;
     padding: .5em 1em;
 }
-
-#login_reply {
+/** FRONT_REPLY_PAGE **/
+#form_reply {
     width:100%;
 }
-#login_reply div{
+#form_reply div{
     margin-bottom: 2.5em;
 }
-#login_reply label{
+#form_reply label{
     font-weight: 500;
 }
-#login_reply .allFrontCheckbox{
+#form_reply .allFrontCheckbox, .allFrontRadio{
     margin-left: 2em;
 }
-#login_reply .allFrontRadio{
-    margin-left: 2em;
-}
-#login_reply .allFrontCheckbox{
+
+#form_reply .allFrontCheckbox, .allFrontRadio{
     margin-bottom: 0;
     width: 100%;
 }
-#login_reply .allFrontCheckbox div{
+/* #form_reply .allFrontRadio{
+    margin-bottom: 0;
+    width: 100%;
+} */
+/* #form_reply .allFrontRadio div{
+    margin-bottom: 0;
+} */
+/* #form_reply .allFrontRadio{
+    margin-left: 2em;
+} */
+#form_reply .allFrontCheckbox div, .allFrontRadio div{
     margin-bottom: 0;
 }
-#login_reply .custom-control-label{
+
+#form_reply .custom-control-label{
     margin-right: 3em;
     font-weight: normal;
 }
-#login_reply .allFrontRadio{
-    margin-bottom: 0;
-    width: 100%;
+.bootstrap-select .filter-option, .filter-option-inner, .filter-option-inner-inner, .bootstrap-select, .dropdown-menu, .inner{ 
+    margin-bottom: 0 !important;
 }
-#login_reply .allFrontRadio div{
-    margin-bottom: 0;
+.bootstrap-select{
+    width:100%;
+    border-radius: .25em;
+    border: 1px solid rgb(169, 169, 169);
 }
 .field_form{
     width:100%;
@@ -138,7 +175,7 @@ form[name='field_survey'] button{
     padding: .5em .75em;
     border: .5px solid rgb(169, 169, 169);
 }
-
+/** HOME_PAGE **/
 .home{
      min-height: calc(100vh - 70px);
      width: 100vw;
@@ -155,7 +192,7 @@ form[name='field_survey'] button{
     margin-bottom: .2rem;
  }
  
-.home_filter{
+ .home_filter{
     min-height: calc(100vh - 70px);
     background: linear-gradient(135deg, rgba(82, 180, 195, 0.03), rgba(82, 180, 195, 0.03), 60%, rgba(13,88,99, 0.2));
 }
@@ -188,7 +225,7 @@ form[name='field_survey'] button{
 }
 .btn_creation:hover{
     text-decoration: none;
-    background-color:  #363636;;
+    background-color:  #363636;
     color: white;
 }
 
@@ -203,14 +240,6 @@ form[name='field_survey'] button{
 }
 .home_section_btn{
     width: 500px;
-}
-
-/**FROM REGISTER**/
-form[name="registration_form"]{
-    border: 1px solid #ced4da;
-    border-radius: .25em;
-    padding: 2em 2em 1em 2em;
-    width: 430px;
 }
 
 
@@ -244,10 +273,12 @@ form[name="registration_form"]{
     max-width: 250px;
     max-height: 250px;
 }
+.custom-file-label::after{
+    content: "Choisir un fichier";
+}
 
 
-/**PERSONAL_DATA_CHARTER PAGE**/
-
+/**PERSONAL_DATA_CHARTER_PAGE**/
 .container_personal_charter, h4{
     margin-top:  1.5rem;
 }
@@ -256,9 +287,4 @@ form[name="registration_form"]{
 }
 .container_personal_charter p{
     padding-left:  1rem;
-}
-
-/***FOOTER**/
-footer a:hover{
-    color:white;
 }

@@ -109,12 +109,14 @@ class SurveyController extends AbstractController
         if($contentForm != null){
         
             $question = $contentForm["field_survey"]["question"];
+            //$questionCustomize = CustomUserEntry::customNameOfQuestion($question);
             $questionCustomize = $this->customUserEntry->customNameOfQuestion($question);
-            $fieldSurvey->setQuestion($questionCustomize);
+            
             
             if(isset($contentForm["_associated_values"]) && $contentForm["_associated_values"] != null){
                 $associatedValues​​NotProcessed = explode(",", $contentForm["_associated_values"]);
                 $associatedValues = $this->customUserEntry->customCollectionOfAssociatedValue($associatedValues​​NotProcessed);
+                //$associatedValues = CustomUserEntry::customCollectionOfAssociatedValue($associatedValues​​NotProcessed);
             }
 
         }
@@ -124,6 +126,7 @@ class SurveyController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
+            $fieldSurvey->setQuestion($questionCustomize);
             $fieldSurvey->setSurvey($currentSurvey);
             $fieldSurvey->setAssociatedValues($associatedValues);
             $em->persist($fieldSurvey);

@@ -3,6 +3,8 @@
 
 {% block body %}
 
+      {% include 'partials/modal.html.twig' %}
+
     {% for message in app.flashes('thanksMessage') %}
         <div class="flash-message alert alert-success" role="alert">
             {{ message }}
@@ -17,8 +19,8 @@
 
     <div class="container pt-5 d-flex p-2">
     
-     <form id="login_reply" action="{{ path('questionnaire', {'hash': survey.hashIdentifier}) }}" method="post">
-
+     {# <form id="login_reply" action="{{ path('questionnaire', {'hash': survey.hashIdentifier}) }}" method="post"> #}
+    <form id="form_reply" name="form_reply" action="{{ path('questionnaire', {'hash': survey.hashIdentifier}) }}" method="post">
             <div class="form_group">
                 <label for="inputEmail" >Adresse Email</label>
          
@@ -35,7 +37,8 @@
 
                     {% elseif field.typeReply == 'select' %}
 
-                        <select class="custom-select custom-select-lg mb-3" name="{{ field.id ~ "[]" }}" id="{{ field.id }}" multiple size="{{field.associatedValues|length}}">
+                        {# <select class="custom-select custom-select-lg mb-3" name="{{ field.id ~ "[]" }}" id="{{ field.id }}" multiple size="{{field.associatedValues|length}}"> #}
+                        <select class=" sell selectpicker" name="{{ field.id ~ "[]" }}" id="{{ field.id }}"  multiple >
                              {% for value in field.associatedValues%}
                                 <option value="{{ value }}">{{ value }}</option>
                             {% endfor %}
