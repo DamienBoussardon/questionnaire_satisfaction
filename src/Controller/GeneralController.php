@@ -20,7 +20,7 @@ class GeneralController extends AbstractController
     {       
       $response = new Response();
             $response->headers->setCookie(Cookie::create('acceptCookie', 'false'));
-            echo ($response);
+            // echo ($response);
             return $this->render('pages/home.html.twig');
     }
 
