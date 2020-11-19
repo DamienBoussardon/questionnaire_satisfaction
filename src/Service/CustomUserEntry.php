@@ -6,11 +6,6 @@ class CustomUserEntry
 
     public function customNameOfQuestion($question)
     {
-        // $question = strtolower($question);
-        // $question = preg_replace('/[^a-zA-Z éiêàùïç 0-9]/i', ' ', $question);
-        // $question = trim($question);
-        // $question = ucfirst($question);
-        // return $question;
         $questionLow = strtolower($question);
         $questionReplaced = preg_replace('/[^a-zA-Z éiêàùïç 0-9]/i', ' ', $questionLow);
         $questionTrim = trim($questionReplaced);
